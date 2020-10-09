@@ -1,5 +1,5 @@
 ### tools_python
 
 This repo contains my personal python tools, including:
-* image22gif
+* images2gif
 * pytorch2keras
