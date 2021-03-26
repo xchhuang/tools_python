@@ -1,4 +1,4 @@
-### tools_python
+### PythonToolBox
 
 This repo contains my personal python tools for other projects, including:
 * images2gif (provide an example to use https://imageio.github.io/)
