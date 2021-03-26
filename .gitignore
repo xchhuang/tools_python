@@ -1,6 +1,9 @@
 build
 build/*
 */build/*
+dist
+dist/*
+*/dist/*
 __pycache__
 __pycache__/*
 */__pycache__/*
@@ -8,3 +11,10 @@ __pycache__/*
 .DS_Store/*
 */.DS_Store/*
 pyrender.cpp
+.crf-image-labeling
+.crf-image-labeling/*
+*/.crf-image-labeling/*
+.pyrender2
+.pyrender2/*
+*/.pyrender2/*
+*/*.egg-info/*
