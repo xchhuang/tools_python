@@ -6,3 +6,5 @@ This repo contains my personal python tools for other projects, including:
 * cpp extension for pytorch
 	* (example from https://zhuanlan.zhihu.com/p/100459760)
 	* https://github.com/godweiyang/NN-CUDA-Example
+* libtorch for cpp
+	* https://pytorch.org/cppdocs/installing.html#minimal-example
