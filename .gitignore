@@ -18,3 +18,6 @@ pyrender2
 pyrender2/*
 */pyrender2/*
 */*.egg-info/*
+.idea
+.idea/*
+*/.idea/*
