@@ -2,8 +2,12 @@ import numpy as np
 import torch
 
 
-def main():
+def gen_data():
     pass
+
+
+def main():
+    gen_data()
 
 
 if __name__ == '__main__':
