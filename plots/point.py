@@ -17,18 +17,19 @@ def plot_point_np(pts, cls, size, title):
 
 
 def main():
-    N = 1024
+    N = 256
+    size = 20
     pts = np.random.rand(N, 2)
     cls = np.zeros(N, dtype=np.int32)
-    plot_point_np(pts, cls, 5, 'random')
+    plot_point_np(pts, cls, size, 'random')
 
     pts = generate_possion_dis(N, 0.01, 0.99)
     cls = np.zeros(N, dtype=np.int32)
-    plot_point_np(pts, cls, 5, 'poisson')
+    plot_point_np(pts, cls, size, 'poisson')
 
     pts = jitter_sampler(N)
     cls = np.zeros(N, dtype=np.int32)
-    plot_point_np(pts, cls, 5, 'jitter')
+    plot_point_np(pts, cls, size, 'jitter')
 
 
 if __name__ == '__main__':
