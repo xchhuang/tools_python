@@ -3,6 +3,30 @@ import torch
 import matplotlib.pyplot as plt
 from poisson_disk import generate_possion_dis
 from jitter import jitter_sampler
+import torch
+
+
+def normalization(points, d_space=2, edge_space=0.1, egde_feature=0.2, norm=True):
+    """
+    taken from PPS, to leave some edge_space for point patterns
+    """
+    min = points.min(0)[0]
+    max = points.max(0)[0]
+    for id in range(d_space):
+        r = max[id] - min[id]
+        points[:, id] = (((points[:, id] - min[id]) / r) * (1 - 2 * edge_space) + edge_space)
+    return points
+
+
+def read_from_pt(path):
+    p = torch.load(path)
+    p = p[:, 0:2]
+    normalization(p, edge_space=0.02)
+    p = p.detach().cpu().numpy()
+    c = np.zeros(p.shape[0])
+    # print(p.shape, c.shape)
+    # print(p)
+    return p, c
 
 
 def read_from_txt(path):
@@ -77,8 +101,14 @@ def gen_point_pattern2():
     pass
 
 
+def gen_point_pattern3():
+    path = '../../PointPatternSynthesis/pytorch_original/data/Building1f.pt'
+    pts, cls = read_from_pt(path)
+    plot_point_np(pts, cls, 5, 'Building1_input')
+
+
 def main():
-    gen_point_pattern2()
+    gen_point_pattern3()
 
 
 if __name__ == '__main__':
