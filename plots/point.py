@@ -43,16 +43,17 @@ def read_from_txt(path):
         for line in lines:
             line = line.strip().split(' ')
             line = [float(x) for x in line]
-            cur_p = [float(x) for x in line[1:]]
+            cur_p = [float(x) for x in line[0:]]
             # cur_c = id_map[int(line[0])]
-            cur_c = int(line[0])
+            # cur_c = int(line[0])
+            cur_c = int(0)
 
             p.append(cur_p)
             c.append(cur_c)
     p = np.array(p)
     c = np.array(c)
-    # c[0:32] = 0
-    # c[32:] = 1
+    c[0:32] = 0
+    c[32:] = 1
     # print(p.shape)
     return p, c
 
@@ -85,9 +86,9 @@ def gen_point_pattern():
 
 
 def gen_point_pattern2():
-    # path = '../../pattern-synthesis/image_based/results/vshape_s_N64_chamfer/optimize_style_loss2/pts_scale2.txt'
-    # pts, cls = read_from_txt(path)
-    # plot_point_np(pts, cls, 5, 'vshape_s_output')
+    path = '../../pattern-synthesis/image_based/results/vshape_s_N64_chamfer/optimize_style_loss2/pts_scale2.txt'
+    pts, cls = read_from_txt(path)
+    plot_point_np(pts, cls, 5, 'vshape_s_output')
     # path = '../../pattern-synthesis/data/vshape_s/64/test/00000.txt'
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'vshape_s_input')
@@ -108,7 +109,7 @@ def gen_point_pattern3():
 
 
 def main():
-    gen_point_pattern3()
+    gen_point_pattern2()
 
 
 if __name__ == '__main__':
