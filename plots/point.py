@@ -5,6 +5,34 @@ from poisson_disk import generate_possion_dis
 from jitter import jitter_sampler
 
 
+def read_from_txt(path):
+    p = []
+    c = []
+    num_classes = 2
+    id_map = {}
+    class_index = [1000 * (i + 1) for i in range(num_classes)]
+    for i in range(num_classes):
+        id_map[class_index[i]] = i
+
+    with open(path) as f:
+        lines = f.readlines()
+        for line in lines:
+            line = line.strip().split(' ')
+            line = [float(x) for x in line]
+            cur_p = [float(x) for x in line[1:]]
+            # cur_c = id_map[int(line[0])]
+            cur_c = int(line[0])
+
+            p.append(cur_p)
+            c.append(cur_c)
+    p = np.array(p)
+    c = np.array(c)
+    # c[0:32] = 0
+    # c[32:] = 1
+    # print(p.shape)
+    return p, c
+
+
 def plot_point_np(pts, cls, size, title):
     plt.figure(1)
     plt.scatter(pts[:, 0], pts[:, 1], s=size, c=cls)
@@ -16,7 +44,7 @@ def plot_point_np(pts, cls, size, title):
     plt.close('all')
 
 
-def main():
+def gen_point_pattern():
     N = 256
     size = 20
     pts = np.random.rand(N, 2)
@@ -30,6 +58,27 @@ def main():
     pts = jitter_sampler(N)
     cls = np.zeros(N, dtype=np.int32)
     plot_point_np(pts, cls, size, 'jitter')
+
+
+def gen_point_pattern2():
+    # path = '../../pattern-synthesis/image_based/results/vshape_s_N64_chamfer/optimize_style_loss2/pts_scale2.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 5, 'vshape_s_output')
+    # path = '../../pattern-synthesis/data/vshape_s/64/test/00000.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 20, 'vshape_s_input')
+
+    # path = '../../pattern-synthesis/image_based/results/vshape_N64_chamfer/optimize_poisson/pts_scale2.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 5, 'poisson_output')
+    # path = '../../pattern-synthesis/data/poisson/64/test/00000.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 20, 'poisson_input')
+    pass
+
+
+def main():
+    gen_point_pattern2()
 
 
 if __name__ == '__main__':
