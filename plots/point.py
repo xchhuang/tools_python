@@ -69,6 +69,28 @@ def plot_point_np(pts, cls, size, title):
     plt.close('all')
 
 
+def plot_mc_point_np(pts, cls, size, title):
+    color_dict = {
+        0: 'r',
+        1: 'g',
+        2: 'b',
+        3: 'm',
+        4: 'y',
+        5: 'k',
+    }
+    N = pts.shape[0]
+    plt.figure(1)
+    # print(cls)
+    for i in range(N):
+        plt.scatter(pts[i, 0], pts[i, 1], s=size, c=color_dict[cls[i]])
+    plt.xlim([0, 1])
+    plt.ylim([0, 1])
+    plt.gca().set_aspect('equal', adjustable='box')
+    plt.axis('off')
+    plt.savefig(title, bbox_inches='tight', pad_inches=0, dpi=200)
+    plt.close('all')
+
+
 def gen_point_pattern():
     N = 256
     size = 20
@@ -100,9 +122,17 @@ def gen_point_pattern2():
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'poisson_input')
 
-    path = '../../pattern-synthesis/image_based/results/vshape_N64_chamfer/optimize_vgg_2/pts_scale2.txt'
+    # path = '../../pattern-synthesis/image_based/results/vshape_N64_chamfer/optimize_vgg_2/pts_scale2.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 5, 'vshape_output')
+    # path = '../../pattern-synthesis/data/vshape/64/test/00000.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 20, 'vshape_input')
+
+    # path = '../../pattern-synthesis/image_based/results/poisson_mc/optimize_1/pts_scale2.txt'
+    path = 'results/pts_scale2.txt'
     pts, cls = read_from_txt(path)
-    plot_point_np(pts, cls, 5, 'vshape_output')
+    plot_mc_point_np(pts, cls, 5, 'results/poisson_mc_output')
     # path = '../../pattern-synthesis/data/vshape/64/test/00000.txt'
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'vshape_input')
