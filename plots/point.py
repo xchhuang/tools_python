@@ -32,7 +32,7 @@ def read_from_pt(path):
 def read_from_txt(path):
     p = []
     c = []
-    num_classes = 2
+    num_classes = 1
     id_map = {}
     class_index = [1000 * (i + 1) for i in range(num_classes)]
     for i in range(num_classes):
@@ -43,17 +43,17 @@ def read_from_txt(path):
         for line in lines:
             line = line.strip().split(' ')
             line = [float(x) for x in line]
-            cur_p = [float(x) for x in line[0:]]
+            cur_p = [float(x) for x in line[1:]]
             # cur_c = id_map[int(line[0])]
-            # cur_c = int(line[0])
-            cur_c = int(0)
+            cur_c = int(line[0])
+            # cur_c = int(0)
 
             p.append(cur_p)
             c.append(cur_c)
     p = np.array(p)
     c = np.array(c)
-    c[0:32] = 0
-    c[32:] = 1
+    # c[0:32] = 0
+    # c[32:] = 1
     # print(p.shape)
     return p, c
 
@@ -86,9 +86,9 @@ def gen_point_pattern():
 
 
 def gen_point_pattern2():
-    path = '../../pattern-synthesis/image_based/results/vshape_s_N64_chamfer/optimize_style_loss2/pts_scale2.txt'
-    pts, cls = read_from_txt(path)
-    plot_point_np(pts, cls, 5, 'vshape_s_output')
+    # path = '../../pattern-synthesis/image_based/results/vshape_s_N64_chamfer/optimize_style_loss2/pts_scale2.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 5, 'vshape_s_output')
     # path = '../../pattern-synthesis/data/vshape_s/64/test/00000.txt'
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'vshape_s_input')
@@ -99,13 +99,23 @@ def gen_point_pattern2():
     # path = '../../pattern-synthesis/data/poisson/64/test/00000.txt'
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'poisson_input')
+
+    path = '../../pattern-synthesis/image_based/results/vshape_N64_chamfer/optimize_vgg_2/pts_scale2.txt'
+    pts, cls = read_from_txt(path)
+    plot_point_np(pts, cls, 5, 'vshape_output')
+    # path = '../../pattern-synthesis/data/vshape/64/test/00000.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 20, 'vshape_input')
     pass
 
 
 def gen_point_pattern3():
-    path = '../../PointPatternSynthesis/pytorch_original/data/Building1f.pt'
+    # path = '../../PointPatternSynthesis/pytorch_original/data/Building1f.pt'
+    # pts, cls = read_from_pt(path)
+    # plot_point_np(pts, cls, 5, 'Building1_input')
+    path = '../../PointPatternSynthesis/pytorch_original/data/Parterre12f.pt'
     pts, cls = read_from_pt(path)
-    plot_point_np(pts, cls, 5, 'Building1_input')
+    plot_point_np(pts, cls, 5, 'Parterre12_input')
 
 
 def main():
