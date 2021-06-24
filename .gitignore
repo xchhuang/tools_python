@@ -21,3 +21,6 @@ pyrender2/*
 .idea
 .idea/*
 */.idea/*
+results
+results/*
+*/results/*
