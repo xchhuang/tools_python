@@ -32,7 +32,7 @@ def read_from_pt(path):
 def read_from_txt(path):
     p = []
     c = []
-    num_classes = 1
+    num_classes = 4
     id_map = {}
     class_index = [1000 * (i + 1) for i in range(num_classes)]
     for i in range(num_classes):
@@ -43,9 +43,9 @@ def read_from_txt(path):
         for line in lines:
             line = line.strip().split(' ')
             line = [float(x) for x in line]
-            cur_p = [float(x) for x in line[1:]]
-            # cur_c = id_map[int(line[0])]
-            cur_c = int(line[0])
+            cur_p = [float(x)/1e4 for x in line[1:]]
+            cur_c = id_map[int(line[0])]
+            # cur_c = int(line[0])
             # cur_c = int(0)
 
             p.append(cur_p)
@@ -80,7 +80,6 @@ def plot_mc_point_np(pts, cls, size, title):
     }
     N = pts.shape[0]
     plt.figure(1)
-    # print(cls)
     for i in range(N):
         plt.scatter(pts[i, 0], pts[i, 1], s=size, c=color_dict[cls[i]])
     plt.xlim([0, 1])
@@ -129,13 +128,20 @@ def gen_point_pattern2():
     # pts, cls = read_from_txt(path)
     # plot_point_np(pts, cls, 20, 'vshape_input')
 
-    # path = '../../pattern-synthesis/image_based/results/poisson_mc/optimize_1/pts_scale2.txt'
-    path = 'results/pts_scale2.txt'
-    pts, cls = read_from_txt(path)
-    plot_mc_point_np(pts, cls, 5, 'results/poisson_mc_output')
-    # path = '../../pattern-synthesis/data/vshape/64/test/00000.txt'
+    # path = '../../pattern-synthesis/image_based/results/poisson_mc_N64_chamfer/optimize_mc_4/pts_scale2.txt'
     # pts, cls = read_from_txt(path)
-    # plot_point_np(pts, cls, 20, 'vshape_input')
+    # plot_mc_point_np(pts, cls, 5, 'results/poisson_mc_output')
+    # path = '../../pattern-synthesis/data/poisson_mc/64/test/00000.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_mc_point_np(pts, cls, 20, 'results/poisson_mc_input')
+
+    # path = '../../pattern-synthesis/image_based/results/poisson_N8_chamfer/optimize_vgg_2/pts_scale2.txt'
+    # pts, cls = read_from_txt(path)
+    # plot_point_np(pts, cls, 5, 'results/poisson_output')
+    path = '../../pattern-synthesis/data/poisson/8/test/00000.txt'
+    pts, cls = read_from_txt(path)
+    plot_point_np(pts, cls, 20, 'results/poisson_input')
+
     pass
 
 
