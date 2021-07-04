@@ -8,3 +8,6 @@ This repo contains my personal python tools for other projects, including:
 	* https://github.com/godweiyang/NN-CUDA-Example
 * libtorch for cpp
 	* https://pytorch.org/cppdocs/installing.html#minimal-example
+
+* scipy_sample: build your own continuous distribution, sample and get pdf from it:
+	* https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_histogram.html
